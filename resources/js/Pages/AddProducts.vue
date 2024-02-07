@@ -42,9 +42,14 @@
                     {{ !form.categories.length > 0 ? "Select Categories" : `${form.categories.length} selected categories` }}
                     <span class="chevron">{{ dropdownOpen ? '▲' : '▼' }}</span>
                     <div v-if="dropdownOpen" class="dropdown-content absolute left-0 mt-1 bg-white border border-gray-200 rounded w-full z-10">
-                        <div v-for="category in categories" :key="category.id" class="category-item py-2 px-4 hover:bg-gray-100 rounded my-2" :class="{'bg-gray-300': form.categories.includes(category.id)}" @click.stop="toggleCategory(category.id)">
-                            <span class="category-name">{{ category.name }}</span>
-                            <span v-if="form.categories.includes(category.id)" class="remove-category">x</span>
+                        <div v-if="categories.length > 0">
+                            <div v-for="category in categories" :key="category.id" class="category-item py-2 px-4 hover:bg-gray-100 rounded my-2" :class="{'bg-gray-300': form.categories.includes(category.id)}" @click.stop="toggleCategory(category.id)">
+                                <span class="category-name">{{ category.name }}</span>
+                                <span v-if="form.categories.includes(category.id)" class="remove-category">x</span>
+                            </div>
+                        </div>
+                        <div v-else>
+                          <p>No Categories in database</p>
                         </div>
                     </div>
                 </div>
